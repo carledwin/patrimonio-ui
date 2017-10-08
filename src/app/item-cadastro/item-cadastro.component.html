@@ -1,0 +1,60 @@
+<form #frm="ngForm" (ngSubmit)="submitToAdicionar(frm)">
+  
+  <div class="ui-g">
+    <div class="ui-g-12 ui-fluid">
+      <h1>Gestão de Patrimônio</h1>
+    </div>
+  </div>
+  
+  <div class="ui-g">
+    <div class="ui-g-6 ui-fluid">
+      <label>Etiqueta*</label>
+      <p-inputMask name="etiqueta" mask="aa9999" ngModel [required]="true"></p-inputMask>
+    </div>
+    
+    <div class="ui-g-6 ui-fluid">
+      <label>Data de aquisição</label>
+      <p-calendar name="dataAquisicao" dateFormat="dd/MM/yyyy" ngModel [required]="false"></p-calendar> 
+    </div>
+    
+    <div class="ui-g-12 ui-fluid">
+      <label>Descrição*</label>  
+      <input pInputText name="descricao" ngModel [required]="true"/>
+    </div>
+    
+    <div class="ui-g-12">
+      <button pButton type="submit" label="Adicionar" [disabled]="frm.invalid"></button>
+    </div>
+  </div>
+  
+  
+  <div class="ui-g">
+    <div class="ui-g-12">
+      <p-dataTable [value]="itens">
+        <p-column field="etiqueta" header="Etiqueta"></p-column>
+        <p-column field="descricao" header="Descrição"></p-column>
+        <p-column header="Data Aquisição">
+          <ng-template pTemplate="body" let-item="rowData">
+            {{item.dataAquisicao | date: 'dd/MM/yyyy'}}
+          </ng-template>
+        </p-column>
+      </p-dataTable>
+    </div>
+  </div>
+</form>
+  
+  
+  <!--
+    <table border="1">
+  <tr>
+    <th>Etiqueta</th>
+    <th>Descrição</th>
+    <th>Aquisição</th>
+  </tr>
+  <tr *ngFor="let item of items">
+    <td>{{item.etiqueta}}</td>
+    <td>{{item.descricao}}</td>
+    <td>{{item.dataAquisicao | date:'dd/MM/yyyy'}}</td>
+  </tr>
+</table>
+-->
